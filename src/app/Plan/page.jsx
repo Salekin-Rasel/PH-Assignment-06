@@ -7,7 +7,8 @@ const PlanPage = () => {
     const {plan, saved} = useContext(FitContext)
     return (
         <div>
-            
+            {plan.length}
+            {saved.length}
         </div>
     );
 };

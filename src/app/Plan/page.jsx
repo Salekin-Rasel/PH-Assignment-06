@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 
 const PlanPage = () => {
 
-    const {plan} = useContext(FitContext)
+    const {plan, saved} = useContext(FitContext)
     return (
         <div>
             

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ReadButton from "./ReadButton";
+import SavedButton from "./SavedButton";
 
 const DetailedCard = ({ exercise }) => {
   return (
@@ -162,9 +163,7 @@ const DetailedCard = ({ exercise }) => {
 
           <ReadButton exercise= {exercise}/>
 
-          <button className="btn border border-[#343840] bg-transparent text-xs text-gray-300 hover:border-lime-400 hover:bg-transparent hover:text-lime-400">
-            ♡ Save for later
-          </button>
+          <SavedButton exercise={exercise}/>
 
         </div>
 

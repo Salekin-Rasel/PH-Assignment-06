@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ReadButton from "./ReadButton";
 
 const DetailedCard = ({ exercise }) => {
   return (
@@ -159,9 +160,7 @@ const DetailedCard = ({ exercise }) => {
         {/* Buttons */}
         <div className="mt-6 flex flex-wrap gap-3">
 
-          <button className="btn border-none bg-lime-400 text-xs font-bold text-black hover:bg-lime-300">
-            + Add to today's plan
-          </button>
+          <ReadButton exercise= {exercise}/>
 
           <button className="btn border border-[#343840] bg-transparent text-xs text-gray-300 hover:border-lime-400 hover:bg-transparent hover:text-lime-400">
             ♡ Save for later

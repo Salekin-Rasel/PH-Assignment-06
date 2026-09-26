@@ -1,6 +1,10 @@
-import React from 'react';
+"use client"
+import { FitContext } from '@/Context/FitContext';
+import React, { useContext } from 'react';
 
 const PlanPage = () => {
+
+    const {plan} = useContext(FitContext)
     return (
         <div>
             

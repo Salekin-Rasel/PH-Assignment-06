@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Banner from "@/components/Banner";
 import ExercisesPage from "./exercises/page";
 import Footer from "@/components/Footer";
+import FitProvider from "@/Context/FitContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,12 +28,13 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        
+        <FitProvider>
         <Nav/>
         
         {children}
-        
+
         <Footer/>
+        </FitProvider>
         </body>
     </html>
   );

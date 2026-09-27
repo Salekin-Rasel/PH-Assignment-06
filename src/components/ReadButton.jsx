@@ -1,22 +1,32 @@
 "use client"
+
 import { FitContext } from '@/Context/FitContext';
 import React, { useContext } from 'react';
-import { toast } from 'react-toastify';
 
-const ReadButton = ({exercise}) => {
+const ReadButton = ({ exercise }) => {
 
-    const {plan, setPlan} = useContext(FitContext)
+    const { plan, addToPlan } = useContext(FitContext);
 
-    const handleReadButton = ()=>{
-        setPlan([...plan, exercise])
-        toast.success("Exercise added!");
-        
-    }
+    const alreadyAdded = plan.some(
+        item => item.id === exercise.id
+    );
+
+
     return (
-        <button className="btn border-none bg-lime-400 text-xs font-bold text-black hover:bg-lime-300"
-        onClick={()=>handleReadButton()}>
-            + Add to today's plan
-          </button>
+        <button
+            onClick={() => addToPlan(exercise)}
+            disabled={alreadyAdded}
+            className={`btn text-xs font-bold ${
+                alreadyAdded
+                    ? "bg-gray-700 text-gray-400"
+                    : "border-none bg-lime-400 text-black hover:bg-lime-300"
+            }`}
+        >
+            {alreadyAdded
+                ? "✓ Added to today's plan"
+                : "+ Add to today's plan"
+            }
+        </button>
     );
 };
 

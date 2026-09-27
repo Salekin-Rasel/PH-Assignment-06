@@ -1,22 +1,32 @@
 "use client"
+
 import { FitContext } from '@/Context/FitContext';
 import React, { useContext } from 'react';
-import { toast } from 'react-toastify';
 
-const SavedButton = ({exercise}) => {
+const SavedButton = ({ exercise }) => {
 
-    const {saved, setSaved} = useContext(FitContext)
+    const { saved, addToSaved } = useContext(FitContext);
 
-    const handleSavedButton = ()=>{
-        setSaved([...saved, exercise])
-        toast.success("Exercise saved!");
-        
-    }
+    const alreadySaved = saved.some(
+        item => item.id === exercise.id
+    );
+
+
     return (
-        <button className="btn border border-[#343840] bg-transparent text-xs text-gray-300 hover:border-lime-400 hover:bg-transparent hover:text-lime-400"
-        onClick={()=>handleSavedButton()}>
-            ♡ Save for later
-          </button>
+        <button
+            onClick={() => addToSaved(exercise)}
+            disabled={alreadySaved}
+            className={`btn text-xs ${
+                alreadySaved
+                    ? "border-gray-700 bg-gray-700 text-gray-400"
+                    : "border border-[#343840] bg-transparent text-gray-300 hover:border-lime-400 hover:bg-transparent hover:text-lime-400"
+            }`}
+        >
+            {alreadySaved
+                ? "✓ Saved"
+                : "♡ Save for later"
+            }
+        </button>
     );
 };
 

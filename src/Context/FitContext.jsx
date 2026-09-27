@@ -10,7 +10,7 @@ const FitProvider = ({ children }) => {
     const [saved, setSaved] = useState([]);
 
 
-    // Add exercise to today's plan
+    // Add to Today's Plan
     const addToPlan = (exercise) => {
 
         if (plan.some(item => item.id === exercise.id)) {
@@ -21,15 +21,16 @@ const FitProvider = ({ children }) => {
     };
 
 
-    // Remove exercise from today's plan
+    // Remove from Today's Plan
     const removeFromPlan = (id) => {
+
         setPlan(
             plan.filter(exercise => exercise.id !== id)
         );
     };
 
 
-    // Add exercise to saved
+    // Add to Saved
     const addToSaved = (exercise) => {
 
         if (saved.some(item => item.id === exercise.id)) {
@@ -40,8 +41,9 @@ const FitProvider = ({ children }) => {
     };
 
 
-    // Remove exercise from saved
+    // Remove from Saved
     const removeFromSaved = (id) => {
+
         setSaved(
             saved.filter(exercise => exercise.id !== id)
         );

@@ -3,50 +3,30 @@
 import { FitContext } from '@/Context/FitContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 const PlanPage = () => {
 
-    const { plan, saved } = useContext(FitContext)
-
-    const [removedPlan, setRemovedPlan] = useState([])
-    const [removedSaved, setRemovedSaved] = useState([])
-
-
-    // Remove exercise from Today's Plan
-    const removeFromPlan = (id) => {
-        setRemovedPlan([...removedPlan, id])
-    }
-
-
-    // Remove exercise from Saved
-    const removeFromSaved = (id) => {
-        setRemovedSaved([...removedSaved, id])
-    }
-
-
-    // Exercises that are still visible
-    const visiblePlan = plan.filter(
-        exercise => !removedPlan.includes(exercise.id)
-    )
-
-    const visibleSaved = saved.filter(
-        exercise => !removedSaved.includes(exercise.id)
-    )
+    const {
+        plan,
+        saved,
+        removeFromPlan,
+        removeFromSaved
+    } = useContext(FitContext);
 
 
     // Total minutes
     const totalMinutes = plan.reduce(
         (acc, current) => acc + current.duration,
         0
-    )
+    );
 
 
     // Total calories
     const totalCalories = plan.reduce(
         (acc, current) => acc + current.caloriesBurned,
         0
-    )
+    );
 
 
     return (
@@ -83,7 +63,7 @@ const PlanPage = () => {
                     </p>
 
                     <h2 className="mt-2 text-4xl font-extrabold text-lime-400">
-                        {visiblePlan.length}
+                        {plan.length}
                     </h2>
 
                 </div>
@@ -142,23 +122,27 @@ const PlanPage = () => {
 
                 <div className="tab-content w-full border-none bg-transparent p-0 pt-6">
 
-
                     {
-                        visiblePlan.length === 0 ? (
+                        plan.length === 0 ? (
 
                             /* Empty Today's Plan */
 
-                             <div className="flex flex-col gap-2 p-10 min-h-32 items-center justify-center rounded-xl border border-[#292d35] bg-[#13161c]">
+                            <div className="flex min-h-32 flex-col items-center justify-center gap-2 rounded-xl border border-[#292d35] bg-[#13161c] p-10">
 
-                                <p className="text-4xl font-semibold uppercase tracking-wider text-gray-500">
+                                <p className="text-center text-4xl font-semibold uppercase tracking-wider text-gray-500">
                                     NOTHING HERE YET
                                 </p>
-                                <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
+
+                                <p className="text-center text-sm font-semibold uppercase tracking-wider text-gray-500">
                                     Browse the library and add a lift to get today moving.
                                 </p>
-                                <Link href={'/exercises'} className="mt-5 rounded-4xl btn border-none bg-lime-400 px-6 text-sm font-bold text-black hover:bg-lime-300">
-                                  BROWSE WORKOUTS
-                                 </Link>
+
+                                <Link
+                                    href="/exercises"
+                                    className="btn mt-5 rounded-full border-none bg-lime-400 px-6 text-sm font-bold text-black hover:bg-lime-300"
+                                >
+                                    BROWSE WORKOUTS
+                                </Link>
 
                             </div>
 
@@ -169,7 +153,7 @@ const PlanPage = () => {
                             <div className="space-y-4">
 
                                 {
-                                    visiblePlan.map(exercise => (
+                                    plan.map(exercise => (
 
                                         <div
                                             key={exercise.id}
@@ -258,7 +242,7 @@ const PlanPage = () => {
 
                                             {/* Buttons */}
 
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex flex-wrap items-center gap-3">
 
 
                                                 {/* View Details */}
@@ -274,23 +258,23 @@ const PlanPage = () => {
 
                                                 {/* Mark as Done */}
 
-                                               <button
-    onClick={() => removeFromPlan(exercise.id)}
-    className="rounded-full bg-lime-400 px-4 py-2 text-xs font-bold text-black hover:bg-lime-300"
->
-    ✓ Mark as Done
-</button>
+                                                <button
+                                                    onClick={() => removeFromPlan(exercise.id)}
+                                                    className="rounded-full bg-lime-400 px-4 py-2 text-xs font-bold text-black hover:bg-lime-300"
+                                                >
+                                                    ✓ Mark as Done
+                                                </button>
 
 
 
                                                 {/* Cross */}
 
                                                 <button
-    onClick={() => removeFromPlan(exercise.id)}
-    className="px-2 text-lg text-gray-500 hover:text-white"
->
-    ×
-</button>
+                                                    onClick={() => removeFromPlan(exercise.id)}
+                                                    className="px-2 text-lg text-gray-500 hover:text-white"
+                                                >
+                                                    ×
+                                                </button>
 
                                             </div>
 
@@ -320,23 +304,27 @@ const PlanPage = () => {
 
                 <div className="tab-content w-full border-none bg-transparent p-0 pt-6">
 
-
                     {
-                        visibleSaved.length === 0 ? (
+                        saved.length === 0 ? (
 
                             /* Empty Saved */
 
-                            <div className="flex flex-col gap-2 p-10 min-h-32 items-center justify-center rounded-xl border border-[#292d35] bg-[#13161c]">
+                            <div className="flex min-h-32 flex-col items-center justify-center gap-2 rounded-xl border border-[#292d35] bg-[#13161c] p-10">
 
-                                <p className="text-4xl font-semibold uppercase tracking-wider text-gray-500">
+                                <p className="text-center text-4xl font-semibold uppercase tracking-wider text-gray-500">
                                     NOTHING HERE YET
                                 </p>
-                                <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
-                                    Browse the library and add a lift to get today moving.
+
+                                <p className="text-center text-sm font-semibold uppercase tracking-wider text-gray-500">
+                                    Browse the library and save a lift for later.
                                 </p>
-                                <Link href={'/exercises'} className="mt-5 rounded-4xl btn border-none bg-lime-400 px-6 text-sm font-bold text-black hover:bg-lime-300">
-                                  BROWSE WORKOUTS
-                                 </Link>
+
+                                <Link
+                                    href="/exercises"
+                                    className="btn mt-5 rounded-full border-none bg-lime-400 px-6 text-sm font-bold text-black hover:bg-lime-300"
+                                >
+                                    BROWSE WORKOUTS
+                                </Link>
 
                             </div>
 
@@ -347,7 +335,7 @@ const PlanPage = () => {
                             <div className="space-y-4">
 
                                 {
-                                    visibleSaved.map(exercise => (
+                                    saved.map(exercise => (
 
                                         <div
                                             key={exercise.id}
@@ -453,11 +441,11 @@ const PlanPage = () => {
                                                 {/* Cross */}
 
                                                 <button
-    onClick={() => removeFromSaved(exercise.id)}
-    className="px-2 text-lg text-gray-500 hover:text-white"
->
-    ×
-</button>
+                                                    onClick={() => removeFromSaved(exercise.id)}
+                                                    className="px-2 text-lg text-gray-500 hover:text-white"
+                                                >
+                                                    ×
+                                                </button>
 
                                             </div>
 

@@ -5,6 +5,7 @@ import Banner from "@/components/Banner";
 import ExercisesPage from "./exercises/page";
 import Footer from "@/components/Footer";
 import FitProvider from "@/Context/FitContext";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
 
         <Footer/>
         </FitProvider>
+        <ToastContainer/>
         </body>
     </html>
   );

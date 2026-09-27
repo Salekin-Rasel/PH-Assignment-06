@@ -4,7 +4,7 @@ import ExerciseDetaileCard from '@/components/ExerciseDetaileCard';
 const ExerciseDetailePage = async ({params}) => {
     const {id} = await params
 
-    const data = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`)
+    const data = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`)
     const detaileCard = await data.json()
 
     return (

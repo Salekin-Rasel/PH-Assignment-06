@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const getData = async()=> {
-    const data = await fetch('https://api.abcz.workers.dev/api/fitlog')
+    const data = await fetch('https://api.api-store.workers.dev/api/fitlog')
     return data.json()
 }
 

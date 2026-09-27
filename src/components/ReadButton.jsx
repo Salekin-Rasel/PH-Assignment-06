@@ -1,6 +1,7 @@
 "use client"
 import { FitContext } from '@/Context/FitContext';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 const ReadButton = ({exercise}) => {
 
@@ -8,6 +9,7 @@ const ReadButton = ({exercise}) => {
 
     const handleReadButton = ()=>{
         setPlan([...plan, exercise])
+        toast.success("Exercise added!");
         
     }
     return (

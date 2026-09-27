@@ -5,7 +5,7 @@ import React from 'react';
 const Banner = () => {
     return (
 
-        <div className="container mx-auto my-6 px-20 flex min-h-[500px] flex-col items-center justify-between gap-10 rounded-2xl bg-[#15171D] px-6 py-12 sm:mt-8 sm:px-8 md:mt-10 md:px-12 lg:mt-20 lg:min-h-[500px] lg:flex-row lg:px-16 lg:py-16">
+        <div className="container mx-20 my-6 flex min-h-[500px] flex-col items-center justify-between gap-10 rounded-2xl bg-[#15171D] px-6 py-12 sm:mt-8 sm:px-8 md:mt-10 md:px-12 lg:mt-20 lg:min-h-[500px] lg:flex-row lg:px-16 lg:py-16">
 
 
             {/* Left side */}

@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 
 export const FitContext = createContext();
 
@@ -18,6 +19,7 @@ const FitProvider = ({ children }) => {
         }
 
         setPlan([...plan, exercise]);
+        toast.success("Exercise Added!");
     };
 
 
@@ -38,6 +40,7 @@ const FitProvider = ({ children }) => {
         }
 
         setSaved([...saved, exercise]);
+        toast.success("Exercise Saved!");
     };
 
 
